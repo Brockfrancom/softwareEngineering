@@ -1,0 +1,21 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block p_title %}Auction Site - Auctions{% endblock %}
+{% block content_1 %}
+{% if auctions %}
+	<div class="card-list">
+	{% for auction in auctions %}
+		{% if not auction.closed %}
+			<div class="card">
+				<div class="card-body">
+					<h3 class="card-title">{{ auction.title }}</h3>
+					<p class="card-text">{% if auction.description %}{{ auction.description }}{% else %}{% endif %}</p>
+				</div>
+					<div class="card-footer">
+						<a href="/auction/{{ auction.id }}" class="btn btn-primary">Go to Auction</a>
+					</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endif %}
+{% endblock %}

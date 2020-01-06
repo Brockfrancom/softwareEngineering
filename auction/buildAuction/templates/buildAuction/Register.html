@@ -1,0 +1,27 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block content_1 %}
+	<div class = "loginForm">
+		<form method="POST" class="w-50 standard" style="margin: auto;">
+			<h1>Register</h1>
+			{% if login_error %}<p>{{login_error}}</p>{% endif %}
+			<div class="form-group">
+				<input placeholder="Full Name" required class="form-control" type="text" id="name" name="name">
+			</div>
+			<div class="form-group">
+				<input placeholder="Username" required class="form-control" type="text" id="username" name="username">
+			</div>
+			<div class="form-group">
+				<input placeholder="Email" required class="form-control" type="email" id="email" name="email">
+			</div>
+			<div class="form-group">
+				<input placeholder="Password" required class="form-control" type="password" id="pass" name="pass">		
+			</div>	
+			<div class="">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-primary w-100" value = "Create Account">
+			</div>
+		</form>
+	</div>
+{% endblock %}
+{% block h_title %}Auction Site{% endblock %}
+{% block p_title %}Auction Site - Login{% endblock %}

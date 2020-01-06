@@ -1,0 +1,11 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block p_title %}Auction Site - {{ auction.title }}{% endblock %}
+{% block content_1 %}
+		<h2 class="{% if auction.event_closed %}closed{% endif %}">{{ auction.title }}{% if auction.event_closed %} - Closed {% endif %}</h2>
+		<p>An Auction By: {{ auction.user.username }}</p>
+		{% if auction.description %}
+		<h3>Description</h3>
+		<p>{{ auction.description }}</p>
+    	{% endif %}
+    	<a href="{% url 'itemListView' auction.id %}">See items in this auction --></a>
+{% endblock %}

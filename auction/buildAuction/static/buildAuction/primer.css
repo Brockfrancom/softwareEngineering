@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto:400,500&display=swap');
+
+html {
+	overflow-y: scroll;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1, h2, h3, h4 {
+	margin: 0px 0px 0px;
+	/*padding-left: 6px;*/
+}
+
+h1, h2 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 500;
+}
+
+h3, h4 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 500;
+}
+
+form h1 {
+	font-size: 28px;
+	font-weight: 500;
+	margin: 10px 0px 5px;
+	padding: 0px;
+	text-align: center;
+}
+
+form.standard {
+	margin: auto;
+	width: 320px;
+	padding: 6px;
+}
+
+input[type=email], input[type=number], input[type=text], input[type=password], input[type=submit], textarea,
+	input[type=button] {
+	padding: 6px;
+	width: 300px;
+	margin: 5px 0px;
+	/*font-size: 1em;*/
+	font-size: 14pt;
+	font-family: sans-serif;
+	box-sizing: content-box;
+	border: 1px solid lightgrey;
+}
+
+input[type=email]:not(:valid), input[type=number]:not(:valid), input[type=text]:not(:valid) , input[type=password]:not(:valid), textarea:not(:valid) {
+	border-top: 3px solid #dd7777;
+}
+
+input[type=email]:valid, input[type=number]:valid, input[type=text]:valid, input[type=password]:valid, textarea:valid {
+	border-top: 3px solid #9abc78;
+}
+
+input[type=email]:focus, input[type=text]:focus, input[type=password]:focus, textarea:focus {
+	border-top: 3px solid #789abc;
+}
+
+input.halvesies {
+	width: 141px;
+}
+
+textarea { 
+	resize: vertical;
+}
+
+form.creator {
+	margin: auto;
+}
+
+nav {
+	margin: 0px;
+	border-bottom: 1px solid #999;
+}
+
+nav a, nav a:visited {
+	text-decoration: none;
+	color: inherit;
+	padding: 2px 3px;
+	border-bottom: 3px solid #789abc;
+	display: inline-block;
+}
+
+nav a.debug {
+	border-bottom: 3px solid #9abc78;
+}
+
+footer {
+	position: fixed;
+	bottom: 0px;
+	padding: 6px;
+}
+
+ul {
+	margin: 0px;
+}
+
+h2.closed {
+	color: red;
+}
+
+p {
+	margin: 0px 0px;
+}
+
+.auction {
+	vertical-align: top;
+	margin: 3px;
+	display: inline-block;
+	border-top: 3px solid #9abc78;
+	border-bottom: 3px solid #789abc;
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	padding: 3px;
+	width: calc(50% - 18px);
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.itemList {
+	margin: 3px;
+	display: block;
+	border-top: 3px solid #000000;
+	border-bottom: 3px solid #000000;
+	border-left: 3px solid #000000;
+	border-right: 3px solid #000000;
+	padding: 3px;
+	width: calc(50% - 18px);
+}
+
+.itemListImageDiv {
+	display: inline-block;
+}
+
+.itemListImage {
+	display: inline-block;
+	padding: 1px;
+	width: 50px;
+    height: 50px;
+}
+
+.itemListDetails {
+	display: inline-block;
+}
+
+.itemViewImage {
+	margin: 10px;
+	display: inline-block;
+	padding: 3px;
+	width: 200px;
+    height: 200px;
+}
+
+.itemViewPrice {
+	margin: 10px 1em;
+	padding: 3px 0;
+	font-weight: 500;
+
+}
+
+.bidButtons {
+	margin: 10px;
+	padding: 3px;
+}
+
+p a {
+	color: #bb0000;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.winning {
+    color: green;
+}
+
+.losing {
+    color: red;
+}
+
+article {
+	padding-bottom: 10px;
+	margin: 0 5em;
+}
+
+article p {
+	margin: 6px 6px;
+}
+
+article h2 {
+	font-size: 1.75em;
+}
+
+.warn {
+	font-style: italic;
+	color: #f00;
+}
+
+.errbox {
+	display: inline-block;
+	position: fixed;
+	bottom: 5px;
+	background-color: #dd7777;
+	right: 5px;
+	padding: 15px;
+	box-shadow: 0px 0px 2px 0px #aaa;
+}
+
+/* The alert message box */
+.error {
+  padding: 20px;
+  background-color: #f47777; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+.message {
+	padding: 20px;
+	margin: 6px 0px 6px 0px;
+}
+
+/* The alert message box */
+.success {
+  background-color: #77f477; /* Red */
+  color: white;
+}
+
+/* The alert message box */
+.warning {
+  background-color: #f4f477; /* Red */
+  color: white;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}

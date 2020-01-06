@@ -1,0 +1,88 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% load static %}
+{% block p_title %}{{auction.title}} - {{item.title}}{% endblock %}
+{% block h_title %}{% endblock %}
+{% block content_1 %}
+
+	{% if item.title %}
+		<div>
+		    <p><a href="{% url 'auction' item.auction.id %}">Back to Item List</a></p>
+			<h1>{{item.title}}</h1>
+			{% if auction.is_live %}<div class="alert alert-primary">This is a live auction item. Bids must be placed at the event location.</div>{% endif %}
+			<h4 class="itemViewPrice">
+			Price: $<span name="price_{{ item.id }}">${{item.current_price}}</span>
+			</h4>
+			<p>Donor: {{item.donator}}</p>
+			<p>Description: {{item.description}}</p>
+			{% if photo_list %}
+			<div class="card-columns">
+				{% for photo in photo_list %}
+				<div class="card">
+					<img class="card-img-top" src="/auction/media/{{ photo.photo }}" alt="Image {{photo.photo}} could not be loaded.">
+				</div>
+				{% endfor %}
+			</div>
+			{% endif %}
+			{% if usersss and not auction.event_closed%}
+				{% if auction.is_live and admin %}
+						<form action="{% url 'processLiveBid' item.id %}" class="w-50" method="post" style="margin: auto;">
+							{% csrf_token %}
+							<h1>Input Item Winner</h1>
+							<div class="form-group">
+								<input type ="number" step="0.01" required class="form-control" name="WinPrice" id="WinPrice" placeholder="Winning Bid" />
+							</div>
+							<div class="form-group">
+								<input type ="number" required class="form-control" name="LiveUserId" id="LiveUserId" placeholder="Live Auction ID Number" />
+							<div>
+							<input type = "submit" value = "Submit Winner" class="btn btn-primary w-100"></input>
+						</form>
+				{% elif not auction.is_live %}
+			<h4 class="itemViewPrice">
+			Price: $<span name="price_{{ item.id }}">${{item.current_price}}</span>
+			</h4>
+					<div style="display:none">
+						<form action="{% url 'processBid2' item.id %}" id="customBid1-frm" method="post">
+							{% csrf_token %}
+							<input type="hidden" id="customBid1" name="customBid" value="{{item.current_price|add:1}}"></input>
+						</form>
+
+						<form action="{% url 'processBid2' item.id %}" id="customBid5-frm" method="post">
+							{% csrf_token %}
+							<input type="hidden" id="customBid5" name="customBid" value="{{item.current_price|add:5}}"></input>
+						</form>
+
+						<form action="{% url 'processBid2' item.id %}" id="customBid10-frm" method="post">
+							{% csrf_token %}
+							<input type="hidden" id="customBid10" name="customBid" value="{{item.current_price|add:10}}"></input>
+						</form>
+
+						<form action="{% url 'processBid2' item.id %}" id="customBid50-frm" method="post">
+							{% csrf_token %}
+							<input type="hidden" id="customBid50" name="customBid" value="{{item.current_price|add:50}}"></input>
+						</form>
+					</div>
+					<div class="form-group w-25">
+					Preset bid options:
+						<div id="bidButtons" class="btn-group">
+								<input type="submit" id="bid-button-1" onclick="$('#customBid1-frm').submit()" value="${{item.current_price|add:1}}" class="btn btn-secondary"></input>
+								<input type="submit" id="bid-button-5" onclick="$('#customBid5-frm').submit()" value="${{item.current_price|add:5}}" class="btn btn-secondary"></input>
+								<input type="submit" id="bid-button-10" onclick="$('#customBid10-frm').submit()" value="${{item.current_price|add:10}}" class="btn btn-secondary"></input>
+								<input type="submit" id="bid-button-50" onclick="$('#customBid50-frm').submit()" value="${{item.current_price|add:50}}" class="btn btn-secondary"></input>
+						</div>
+					</div>
+					<div class="form-group w-25">
+						Price Bid
+						<form action="{% url 'processBid2' item.id %}" method="post">
+							{% csrf_token %}
+							<!--<input type="hidden" id="theUser" name="theUser" value={{user}}></input>-->
+							<input type="number" id="customBid" name="customBid" min="{{ item.current_price }}" placeholder="Bid" step="0.01" class="form-control" />
+							<input type="submit" id="submitCustomBid" class="btn btn-primary w-100" />
+						</form>
+					</div>
+				{% endif %}
+			{% endif %}
+		</div>
+	{% endif %}
+<script src={% static "buildAuction/update.js" %}></script>
+	<script>fetchAndUpdate({{ item.id }})</script>
+{% endblock %}

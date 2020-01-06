@@ -1,0 +1,52 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block h_title %}Current Item Winners{% endblock %}
+{% block p_title %}Current Item Winners{% endblock %}
+{% block content_1 %}
+
+
+{% if item_list %}
+	<table class="table">
+		<tr>
+			<th>Item</th>
+			<th>Timestamp</th>
+            <th>Winning Bid Amount</th>
+            <th>Current Winner</th>
+            <th>Winning Live Auction ID Number</th>
+		</tr>
+		{% for item in item_list %}
+			{% for bid in bid_list %}
+				{% if item.current_winner %}
+					{% if bid.item == item and bid.amount == item.current_price %}
+						<tr>
+							<td class="text-center">
+								<a href="{% url "itemView" item.id %}">{{item.title}}</a><br />
+					<a href="{% url "itemHistory" item.id %}">Item History</a>
+							</td>
+							<td>{{ bid.timestamp }}</td>
+							<td>${{ bid.amount }}</td>
+							<td>{{ bid.user }}</td>
+							{% if bid.user.paddle %}
+								<td>{{ bid.user.paddle }}</td>
+							{% else %}
+								<td>No Live Auction ID Number</td>
+							{% endif %}
+						</tr>
+					{% endif %}
+				{% else %}
+				{% endif %}
+			{% endfor %}
+			{% if not item.current_winner %}
+				<tr class="text-center">
+					<td class="text-center">
+						<a href="{% url "itemView" item.id %}">{{item.title}}</a>
+					</td>
+					<td colspan="4">No Bids Have Been Placed</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+	</table>
+{% else %}
+<h3>No Items</h3>
+{% endif %}
+{% endblock %}
+

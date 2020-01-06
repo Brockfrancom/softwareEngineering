@@ -1,0 +1,42 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block h_title %}Auction Site{% endblock %}
+{% block content_1 %}
+{% if item_list %}
+	<h2>Items Bid On</h2>
+	<h3>Total price to be paid: ${{ userTotal }}</h3>
+    {% for item in item_list %}
+        <div class="itemBiddedOn">
+        
+        <table class="table">
+		  <th colspan="4" class="text-center">
+		{% if item.current_winner == user %}
+        WINNING <a href="{% url "itemView" item.id %}">{{item.title}}</a>
+        {% else %}
+        LOSING <a href="{% url "itemView" item.id %}">{{item.title}}</a>
+        {% endif %}
+		  </th>
+          <tr>
+            <th>Timestamp</th>
+            <th>Bid Amount</th>
+          </tr>
+        {% for bid in bid_list %}
+            {% if bid.item == item %}
+            {% if bid.amount == bid.item.current_price %}
+            <tr class="font-weight-bold text-success">
+              <td>{{ bid.timestamp }}</td>
+              <td>{{ bid.amount }}</td>
+            </tr>
+            {% else %}
+            <tr class="text-danger">
+              <td>{{ bid.timestamp }}</td>
+              <td>{{ bid.amount }}</td>
+            </tr>
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+        </table>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+

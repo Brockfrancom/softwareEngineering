@@ -1,0 +1,36 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block p_title %}{{auction.title}}{% endblock %}
+{% block h_title %}{% endblock %}
+{% block content_1 %}
+		<h2 class="{% if auction.event_closed %}closed{% endif %}">{{ auction.title }}{% if auction.event_closed %} - Closed {% endif %}</h2>
+		<p>An Auction By: {{ auction.user.username }}</p>
+		{% if auction.description %}
+		<h3>Description</h3>
+		<p>{{ auction.description }}</p>
+		{% endif %}
+		{% if item_list %}
+			<div class="card-columns">
+		    {% for item in item_list %}
+		    <div class="card">
+		            {% for photo in photo_list %}
+		                {% if photo.item == item %}
+		                    {% if photo.is_cover %}
+		                        <img class="card-img-top" src="/auction/media/{{ photo.photo }}" alt="Image {{photo.photo}} could not be loaded." style="margin-left: auto; margin-right: auto;object-fit: cover;" />
+		                    {% endif %}    
+		                {% endif %}    
+		            {% endfor %}
+		       	<div class="card-body">
+		    <a class="stretched-link" href="{% url 'itemView' item.id %}">
+		        	<h2>{{item.title}}</h2>
+		    </a>
+		            <div>
+		                Price: ${{item.current_price}}
+		            </div>
+		        </div>
+		    </div>
+		    {% endfor %}
+			</div>
+		{% else %}
+		    <p>No items in auction.</p>
+		{% endif %}
+{% endblock %}

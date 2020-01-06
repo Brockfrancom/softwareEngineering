@@ -1,0 +1,10 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block p_title %}Auction Documentation{% endblock %}
+{% block h_title %}Documentation{% endblock %}
+{% block content_1 %}
+<h2>Set Up Auction Admin User</h2>
+<p>In order to create an auction admin user, you must first create a Django admin user. To do so, create a Django admin by running the command: <pre>`manage.py createsuperuser`</pre>
+<p>After creating a Django admin start the server and register the user, which will become the auction admin, by going to <a href="/register">the registration page</a>, or by going to the <a ref="/login">login page</a> and clicking "Register Here". Once you have registered go to the <a href="/admin">Django Admin Portal</a>. Go to "Accesss" and then select the user you registered. Click the Admin Level checkbox so it is selected. That user is now an auction admin.</p>
+
+<h2>Creating an Auction</h2>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block content_1 %}
+	<h2>Demo</h2>
+	<span id="contents"></span>
+<script>
+	function update(items) {
+		t = "";
+		for (i in items) {
+			item = items[i];
+			t += `<div class="itemList"><h2>${item.title}</h2>`
+			t += `<p class="price">Price: $${item.price}</p></div>`
+		}
+		document.getElementById("contents").innerHTML = t;
+		setTimeout(fetchAndUpdate, 1500);
+	}
+
+	function fetchAndUpdate() {
+		fetch("/prices?auction={{ id }}").then(A=>A.json()).then(A=>update(A));
+	}
+	
+	fetchAndUpdate()
+</script>
+{% endblock %}

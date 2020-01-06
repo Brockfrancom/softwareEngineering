@@ -1,0 +1,45 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block h_title %}Auction Site{% endblock %}
+{% block p_title %}{{ item.title }}{% endblock %}
+{% block content_1 %}
+<article>
+    <p><a href="{% url "adminWinnerList" %}">Back to Item Statuses</a></p> 
+	<h2>History for {{ item.title }}</h2>
+        <div class="itemBiddedOn">
+        {% if bid_list %}
+        <table class="table">
+          <tr>
+            <th>Timestamp</th>
+            <th>Bid Amount</th>
+            <th>User</th>
+            <th>Live Auction ID Number</th>
+          </tr>
+        {% for bid in bid_list %}
+            {% if bid.amount == bid.item.current_price %}
+            <tr class="font-weight-bold">
+              <td>{{ bid.timestamp }}</td>
+              <td>{{ bid.amount }}</td>
+              <td>{{ bid.user }}</td>
+              <td>{{ bid.user.paddle }}</td>
+            </tr>
+            {% else %}
+            <tr class="losing">
+              <td>{{ bid.timestamp }}</td>
+              <td>{{ bid.amount }}</td>
+              <td>{{ bid.user }}</td>
+              <td>{{ bid.user.paddle }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+        {% else %}
+        <table style="width:50%">
+          <tr>
+            <th>No one has bid on this item</th>
+          </tr>
+        </table>
+        {% endif %}
+        </div>
+</article>
+{% endblock %}
+

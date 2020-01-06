@@ -1,0 +1,12 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% load static %}
+{% block content_1 %}
+<span id="contents">
+	<h2>{{ title }}</h2>
+	<p>Price: $<span name="price_{{ id }}"></span></p>
+</span>
+<script src="{% static "buildAuction/update.js" %}"></script>
+<script>
+	fetchAndUpdate({{ id }});
+</script>
+{% endblock %}

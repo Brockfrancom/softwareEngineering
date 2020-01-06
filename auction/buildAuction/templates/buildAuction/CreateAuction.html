@@ -1,0 +1,23 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block p_title %}Auction Site - Create Auction {% endblock %}
+{% block h_title %}Auction Admin Pages {% endblock %}
+{% block content_1 %}
+		<form class="creator standard" method="POST">
+			<h1>New Auction Creation</h1>
+			<div>
+				<input required type="text" id="title" name="title"
+					placeholder="Auction Title" />
+			</div>
+			<div>
+				<textarea required id="desc" name="desc" placeholder="Description"></textarea>
+			</div>
+			<div>
+				<label for="silent"> Silent Auction </label>
+				<input type="checkbox" id="silent" name="silent" />
+			</div>
+			<div>
+				{% csrf_token %}
+				<input type="submit" />
+			</div>
+		</form>
+{% endblock %}

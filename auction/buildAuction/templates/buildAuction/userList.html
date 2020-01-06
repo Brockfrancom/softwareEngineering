@@ -1,0 +1,40 @@
+{% extends "buildAuction/MainTemplate.html" %}
+{% block h_title %}Auction Site{% endblock %}
+{% block content_1 %}
+<article> 
+{% if list %}
+	<h2>Users summary</h2>
+    <div class="user">
+    <table class="table">
+      <tr>
+        <th>User</th>
+        <th>Live Auction ID Number</th>
+        <th>Items Won</th>
+        <th>Total price to be paid</th>
+      </tr>
+    {% for user in list %}
+      <tr>
+        <td>{{ user.User.username }}</td>
+        {% if user.User.paddle %}
+          <td>{{ user.User.paddle }}</td>
+        {% else %}
+          <td>No Live Auction ID Number</td>
+        {% endif %}
+        <td>
+        {% for item in user.Items %}
+          {{ item.title }}, Winning Price: ${{ item.current_price }}<br>
+        {% empty %}
+              User has won no items.
+            </td>
+        {% endfor %}
+      </td>
+      <td>${{ user.UserTotal }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+    </div>
+{% else %}
+<p>No users have been created.</p>
+{% endif %}
+</article>
+{% endblock %}

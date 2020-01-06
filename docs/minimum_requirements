@@ -1,0 +1,14 @@
+Minimum requirements
+
+Admin
+Add items to an auction (Setup)
+Start Auction (Time Based ok)
+Enter liver item winner
+Show all winners, with name, bidding number, items won, total cost
+End a silent auction (time based okay)
+Add bidders to an auction (registration process)
+
+User
+Bid on a silent item
+List winning (or won) items with total price
+List items I'm bidding on

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		
+			<a class="navbar-brand" href="/">
+				<img src="https://gamepedia.cursecdn.com/minecraft_gamepedia/f/f3/Book.png?version=6525329cf4fed7f1b1afeefc9cabd07f" width="30" height="30" class="d-inline-block align-top" alt="">
+				Auctioneers
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item {% if nbar == "home" %}active{% endif %}">
+						<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+					</li>
+					{% if usersss %}
+					<li class="nav-item {% if nbar == "settings" %}active{% endif %}">
+						<a class="nav-link" href="/settings">User Settings</a>
+					</li>
+					<li class="nav-item {% if nbar == "myBids" %}active{% endif %}">
+						<a class="nav-link" href="/myBids">My Bids</a>
+					</li>
+					{% endif %}
+					{% if admin %}
+					<li class="nav-item dropdown {% if nbar == "admin" %}active{% endif %}">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Admin Tools
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/adminWinnerList">Item List</a>
+							<a class="dropdown-item" href="/userList">User Bid List</a>
+							<a class="dropdown-item" href="/docs">Documentation</a>
+							<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/admin">Admin Portal</a>
+						</div>
+					</li>
+					{% endif %}
+				</ul>
+	{% if not usersss %}
+				<a href="/login" class="btn">Log In</a>
+	{% else %}
+				<a href="/logout" class="btn">Log Out</a>
+	{% endif %}
+			</div>
+		</nav>
